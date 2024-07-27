@@ -28,8 +28,4 @@ public class Endereco {
 
     private String cep;
 
-   @ManyToOne
-   @JoinColumn(name = "id_cliente")
-   private Cliente cliente;
-
 }
