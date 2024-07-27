@@ -1,5 +1,6 @@
 package galgsoft.sistembancario.entities;
 
+import galgsoft.sistembancario.enums.TipoTransacaoEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +25,7 @@ public class Transacao {
 
     private LocalDateTime data;
 
-    private TipoTransacao tipo;
+    private TipoTransacaoEnum tipoTransacao;
 
     private BigDecimal valor;
 

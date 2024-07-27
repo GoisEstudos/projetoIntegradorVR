@@ -1,5 +1,6 @@
 package galgsoft.sistembancario.entities;
 
+import galgsoft.sistembancario.enums.CargoEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +25,7 @@ public class Funcionario {
 
     private String cpf;
 
-    private Cargo cargo;
+    private CargoEnum cargo;
 
     @ManyToOne
     @JoinColumn(name = "id_agencia")

@@ -1,5 +1,6 @@
 package galgsoft.sistembancario.entities;
 
+import galgsoft.sistembancario.enums.TipoContaEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,7 +27,7 @@ public class Conta {
 
     private BigDecimal saldo;
 
-    private TipoConta tipo;
+    private TipoContaEnum tipoConta;
 
     @OneToMany
     private List<Transacao> transacaos;

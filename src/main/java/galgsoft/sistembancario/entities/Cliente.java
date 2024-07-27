@@ -1,5 +1,6 @@
 package galgsoft.sistembancario.entities;
 
+import galgsoft.sistembancario.dto.ClienteDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,4 +33,16 @@ public class Cliente {
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 
+
+    public Cliente(ClienteDTO dto) {
+        this.nome = dto.nome();
+        this.cpf = dto.cpf();
+        this.endereco = new Endereco(
+                null,
+                dto.enderecodto().rua(),
+                dto.enderecodto().cidade(),
+                dto.enderecodto().estado(),
+                dto.enderecodto().cep()
+        );
+    }
 }
