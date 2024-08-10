@@ -38,11 +38,11 @@ public class Cliente {
         this.nome = dto.nome();
         this.cpf = dto.cpf();
         this.endereco = new Endereco(
-                null,
-                dto.enderecodto().rua(),
-                dto.enderecodto().cidade(),
-                dto.enderecodto().estado(),
-                dto.enderecodto().cep()
+                getEndereco().getId(),
+                getEndereco().getRua(),
+                getEndereco().getCidade(),
+                getEndereco().getEstado(),
+                getEndereco().getCep()
         );
     }
 }

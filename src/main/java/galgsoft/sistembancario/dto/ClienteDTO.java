@@ -1,4 +1,7 @@
 package galgsoft.sistembancario.dto;
 
-public record ClienteDTO(String nome, String cpf, EnderecoDTO enderecodto) {
+import java.util.List;
+import java.util.UUID;
+
+public record ClienteDTO(UUID id, String nome, String cpf, List<EnderecoDTO> enderecodto) {
 }

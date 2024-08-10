@@ -1,10 +1,8 @@
 package galgsoft.sistembancario.entities;
 
+import galgsoft.sistembancario.dto.EnderecoDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -28,4 +26,10 @@ public class Endereco {
 
     private String cep;
 
+    public Endereco(EnderecoDTO dto){
+        this.rua = dto.rua();
+        this.cidade = dto.cidade();
+        this.estado = dto.estado();
+        this.cep = dto.cep();
+    }
 }
