@@ -25,26 +25,27 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(name = "nome", nullable = false)
     @Size(max = 255, message = "O nome nao pode conter mais que 255 caracteres!")
-    @NotBlank(message = "O nome nao pode ser nullo ou estar em branco!")
+    @NotBlank(message = "O nome nao pode ser nulo ou estar em branco!")
     private String nome;
 
-    @CPF
-    @NotBlank
+    @Column(name = "cpf", nullable = false)
+    @CPF(message = "Cpf Invalido!")
+    @NotBlank(message = "O Cpf nao pode ser nulo ou estar em branco!")
     private String cpf;
 
-    @OneToMany
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Conta> contas;
 
     @ManyToOne
-    @JoinColumn(name = "id_endereco")
+    @JoinColumn(name = "id_endereco", referencedColumnName = "id")
     private Endereco endereco;
-
 
     public Cliente(ClienteDTO dto) {
         this.nome = dto.nome();
         this.cpf = dto.cpf();
         this.endereco = new Endereco();
-        this.endereco.setId(dto.idEndereco());
+        this.endereco.setCep(endereco.getCep());
     }
 }

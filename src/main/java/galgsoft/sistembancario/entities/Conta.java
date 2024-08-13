@@ -27,13 +27,13 @@ public class Conta {
 
     private BigDecimal saldo;
 
+    @Enumerated(EnumType.STRING)
     private TipoContaEnum tipoConta;
 
     @OneToMany
     private List<Transacao> transacaos;
 
     @ManyToOne
-    @JoinColumn(name = "id_cliente")
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Cliente cliente;
-
 }

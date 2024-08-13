@@ -25,12 +25,13 @@ public class Transacao {
 
     private LocalDateTime data;
 
+    @Enumerated(EnumType.STRING)
     private TipoTransacaoEnum tipoTransacao;
 
     private BigDecimal valor;
 
     @ManyToOne
-    @JoinColumn(name = "id_conta")
+    @JoinColumn(name = "id_conta", referencedColumnName = "id")
     private Conta conta;
 
 }

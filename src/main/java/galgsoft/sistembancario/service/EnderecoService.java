@@ -1,34 +1,33 @@
 package galgsoft.sistembancario.service;
 
+import galgsoft.sistembancario.client.ViaCepApi;
 import galgsoft.sistembancario.dto.EnderecoDTO;
 import galgsoft.sistembancario.entities.Endereco;
 import galgsoft.sistembancario.repositories.EnderecoRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.UUID;
 
 @Service
 public class EnderecoService {
 
     private final EnderecoRepository repository;
+    private final ViaCepApi viaCepApi;
 
-    public EnderecoService(EnderecoRepository repository) {
+    public EnderecoService(EnderecoRepository repository, ViaCepApi viaCepApi) {
         this.repository = repository;
+        this.viaCepApi = viaCepApi;
     }
 
-    public List<Endereco> getEndereco(){
-        return repository.findAll();
+    public Endereco getEndereco(String cep){
+        EnderecoDTO enderecoDTO = viaCepApi.getEnderecoPorCep(cep);
+        Endereco endereco = new Endereco();
+
+        endereco.setCep(enderecoDTO.cep());
+        endereco.setLogradouro(enderecoDTO.logradouro());
+        endereco.setLocalidade(enderecoDTO.localidade());
+        endereco.setUf(enderecoDTO.uf());
+
+        return repository.save(endereco);
     }
 
-    public Endereco getEnderecoById(String id){
-        return repository.findById(UUID.fromString(id))
-                .orElseThrow(RuntimeException::new);
-    }
-
-    public Endereco createEndereco(EnderecoDTO dto){
-        Endereco newEndereco = new Endereco(dto);
-
-        return repository.save(newEndereco);
-    }
 }

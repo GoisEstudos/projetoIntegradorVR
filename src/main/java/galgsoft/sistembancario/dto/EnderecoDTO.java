@@ -1,4 +1,4 @@
 package galgsoft.sistembancario.dto;
 
-public record EnderecoDTO(String rua, String cidade, String estado, String cep) {
+public record EnderecoDTO(String cep, String logradouro, String localidade, String uf) {
 }
