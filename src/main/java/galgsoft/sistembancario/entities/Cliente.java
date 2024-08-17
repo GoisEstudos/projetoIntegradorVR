@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.List;
 import java.util.UUID;
@@ -31,7 +30,6 @@ public class Cliente {
     private String nome;
 
     @Column(name = "cpf", nullable = false)
-    @CPF(message = "Cpf Invalido!")
     @NotBlank(message = "O Cpf nao pode ser nulo ou estar em branco!")
     private String cpf;
 

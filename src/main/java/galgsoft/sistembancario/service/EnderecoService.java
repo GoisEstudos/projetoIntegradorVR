@@ -6,6 +6,7 @@ import galgsoft.sistembancario.entities.Endereco;
 import galgsoft.sistembancario.repositories.EnderecoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 
 @Service
 public class EnderecoService {
@@ -19,15 +20,21 @@ public class EnderecoService {
     }
 
     public Endereco getEndereco(String cep){
-        EnderecoDTO enderecoDTO = viaCepApi.getEnderecoPorCep(cep);
-        Endereco endereco = new Endereco();
+        EnderecoDTO newEnderecoDTO = viaCepApi.getEnderecoPorCep(cep);
+        Endereco newEndereco = new Endereco();
 
-        endereco.setCep(enderecoDTO.cep());
-        endereco.setLogradouro(enderecoDTO.logradouro());
-        endereco.setLocalidade(enderecoDTO.localidade());
-        endereco.setUf(enderecoDTO.uf());
+        newEndereco.setCep(newEnderecoDTO.cep());
+        newEndereco.setLogradouro(newEnderecoDTO.logradouro());
+        newEndereco.setLocalidade(newEnderecoDTO.localidade());
+        newEndereco.setUf(newEnderecoDTO.uf());
 
-        return repository.save(endereco);
+        return repository.save(newEndereco);
+    }
+
+    public Endereco cepIgual(String cep){
+        Optional<Endereco> enderecoExiste = repository.findByCepIgnoreCase(cep);
+
+        return enderecoExiste.orElseGet(() -> getEndereco(cep));
     }
 
 }

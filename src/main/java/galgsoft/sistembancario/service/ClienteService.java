@@ -36,8 +36,8 @@ public class ClienteService {
         Cliente newCliente = new Cliente(dto);
         newCliente.setNome(dto.nome());
 
-        Endereco endereco = enderecoService.getEndereco(dto.cep());
-        newCliente.setEndereco(endereco);
+        Endereco endereco = enderecoService.cepIgual(dto.cep());
+            newCliente.setEndereco(endereco);
 
         return clienteRepository.save(newCliente);
     }

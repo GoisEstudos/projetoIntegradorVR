@@ -19,7 +19,7 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "cep", nullable = false, length = 9)
+    @Column(name = "cep", nullable = false, length = 9, unique = true)
     @Size(min = 9, max = 9, message = "O cep deve ter 9 caracteres")
     @NotBlank(message = "O nome nao pode ser nulo, ou estar em branco!")
     private String cep;
