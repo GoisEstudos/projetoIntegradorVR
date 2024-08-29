@@ -1,5 +1,6 @@
 package galgsoft.sistembancario.entities;
 
+import galgsoft.sistembancario.dto.ContaDTO;
 import galgsoft.sistembancario.enums.TipoContaEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,6 +35,15 @@ public class Conta {
     private List<Transacao> transacaos;
 
     @ManyToOne
-    @JoinColumn(name = "id_cliente", referencedColumnName = "id")
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id", nullable = false)
     private Cliente cliente;
+
+    public Conta(ContaDTO dto){
+        this.numero = dto.numero();
+        this.saldo = dto.saldo();
+        this.tipoConta = dto.tipoConta();
+        this.cliente = new Cliente();
+        cliente.setId(dto.id());
+    }
+
 }

@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/cliente")
+@RequestMapping("/api/v1/cliente")
 @RequiredArgsConstructor
 public class ClienteController {
 
     private final ClienteService service;
 
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<List<Cliente>> getClientes(){
         List<Cliente> newClientes = service.getClientes();
         return ResponseEntity.ok(newClientes);
@@ -28,12 +28,12 @@ public class ClienteController {
         return ResponseEntity.ok(service.getClienteById(id));
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Cliente> createCliente(@RequestBody ClienteDTO dto){
         return ResponseEntity.ok(service.createCliente(dto));
     }
 
-    @PatchMapping
+    @PatchMapping("/update")
     public ResponseEntity<Cliente> updateCliente(@RequestBody ClienteDTO dto){
         return ResponseEntity.ok(service.updateCliente(dto));
     }
