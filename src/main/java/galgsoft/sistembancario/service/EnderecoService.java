@@ -36,5 +36,4 @@ public class EnderecoService {
 
         return enderecoExiste.orElseGet(() -> getEndereco(cep));
     }
-
 }
