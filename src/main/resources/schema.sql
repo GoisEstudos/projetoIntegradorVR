@@ -88,6 +88,16 @@ INSERT INTO tipoTransacao(nome) VALUES
 ('SAQUE'),
 ('TRANSFERENCIA');
 
+--Spring Security
+
+CREATE TABLE usuarios(
+    id UUID DEFAULT RANDOM_UUID() NOT NULL,
+    login TEXT NOT NULL UNIQUE,
+    senha TEXT NOT NULL,
+    role TEXT NOT NULL,
+    CONSTRAINT pk_usuarios PRIMARY KEY(id)
+);
+
 INSERT INTO endereco (cep, logradouro, localidade, uf) VALUES
 ('13484-456', 'Rua Exemplo', 'Limeira', 'SP'),
 ('13484-457', 'Avenida Paulista', 'São Paulo', 'SP'),
